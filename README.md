@@ -16,3 +16,4 @@ Installation:
   source venv/bin/activate   # Mac/Linux
   pip install -r requirements.txt
   
+Add your API keys (including Finnhub) in a .env file.
