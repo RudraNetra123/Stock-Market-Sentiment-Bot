@@ -2,15 +2,14 @@
 
 A Python-based bot that gathers sentiment from financial news, Twitter, and Reddit, analyzes it using NLP techniques, predicts sentiment using an LSTM model, and visualizes how sentiment correlates with real stock prices.
 
-**Features:**
-```
-  Fetches live data from News APIs, Twitter, and Reddit
-  Performs sentiment analysis on text data in real time
-  Uses an LSTM neural network to predict stock sentiment
-  Integrates stock price data using Finnhub API
-  Visualizes sentiment trends vs. actual price movements
-  Comes with a Flask web app dashboard for interactive use
-```
+## Features
+
+- Fetches live data from News APIs, Twitter, and Reddit  
+- Performs sentiment analysis on text data in real time  
+- Uses an LSTM neural network to predict stock sentiment  
+- Integrates stock price data using Finnhub API  
+- Visualizes sentiment trends vs. actual price movements  
+- Comes with a Flask web app dashboard for interactive use  
 
 **Installation:**
 ```
