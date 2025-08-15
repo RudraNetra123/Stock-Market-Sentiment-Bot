@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+*.png
+app/static/*
+model/saved_model.pth
+.env

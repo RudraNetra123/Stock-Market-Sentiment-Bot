@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sentiment Analysis Bot</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f0f0f;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 60px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #00ffc8;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 0 0 5px #00ffc8;
+        }
+
+        form {
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 0 25px rgba(0, 255, 200, 0.15);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            width: 280px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            margin-right: 12px;
+            font-size: 16px;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #00ffc8;
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 0 10px #00ffc8;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #00cfa4;
+            box-shadow: 0 0 15px #00ffc8;
+        }
+
+        .result-container {
+            margin-top: 40px;
+            width: 90%;
+            max-width: 700px;
+            background-color: #1c1c1c;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 255, 200, 0.1);
+        }
+
+        h2 {
+            color: #80ffea;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #ccc;
+            margin: 8px 0;
+        }
+
+        .score {
+            font-size: 20px;
+            color: #00ffbf;
+            font-weight: bold;
+        }
+
+        img {
+            margin-top: 20px;
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 200, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Stock Sentiment Analyzer</h1>
+
+    <form method="POST">
+        <input type="text" name="stock_name" placeholder="Enter stock (e.g., TSLA)" required>
+        <button type="submit">Analyze</button>
+    </form>
+
+    {% if chart_path %}
+
+    <div class="result-container">
+        <h2>Sentiment Analysis for "{{ stock_name.upper() }}"</h2>
+
+        {% if market_status %}
+            <div style="margin-top: 12px; margin-bottom: 10px;">
+                <p style="font-size: 18px; color: #00ffbf; margin: 0;">
+                    💹 Live Market Price: <strong>{{ market_status }}</strong>
+                </p>
+            </div>
+        {% endif %}
+
+        <img src="{{ chart_path }}" alt="Sentiment Chart">
+        <p><strong>Sentiment Counts:</strong> {{ counts }}</p>
+        {% if interpretation %}
+            <p><strong>Interpretation:</strong> {{ interpretation|safe }}</p>
+            <p class="score">Sentiment Score: {{ sentiment_score }}</p>
+        {% endif %}
+
+        {% if trend_chart_path %}
+            <h2 style="margin-top: 30px;">📊 Sentiment Over Time</h2>
+            <img src="{{ trend_chart_path }}" alt="Sentiment Trend Chart">
+        {% endif %}
+
+        {% if prediction_text %}
+            <p style="font-size: 18px; color: #ffdf80; font-weight: bold;">
+                📊 {{ prediction_text }}
+            </p>
+        {% endif %}
+        
+        {% if price_chart_url %}
+        <h2 style="margin-top: 30px;">Intraday Price Chart</h2>
+        <img src="{{ price_chart_url }}" alt="Live Price Chart">
+        {% endif %}
+    </div>
+    {% endif %}
+
+</body>
+</html>

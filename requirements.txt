@@ -1,0 +1,13 @@
+tweepy
+newsapi-python
+praw
+transformers
+torch
+nltk
+textblob
+vaderSentiment
+pandas
+yfinance
+streamlit
+matplotlib
+plotly
